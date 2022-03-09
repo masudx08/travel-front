@@ -1,0 +1,22 @@
+/*
+ navbar bg - #1f3349 
+ highlighet text -#00c57f
+ footer color - #6a6b6b
+ main text - #404040
+ secondary text - #5d5d5d
+*/
+.headerContainer{
+  background-color: #1f3349;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+.headerContainer h2{
+  font-size: 3rem;
+}
+
+@media screen and (max-width:667px) {
+  .headerContainer h2{
+    font-size: 36px;
+  }
+}

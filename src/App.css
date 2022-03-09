@@ -1,0 +1,30 @@
+/*
+ navbar bg - #1f3349 
+ highlighet text -#00c57f
+ footer color - #6a6b6b
+ main text - #404040
+ secondary text - #5d5d5d
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+.highlight{
+  color: #00c57f
+}
+p, b, a{
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+@media screen and (max-width:667px) {
+  p, b, a{
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+  }
+}

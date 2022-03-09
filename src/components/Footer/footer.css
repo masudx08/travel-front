@@ -1,0 +1,17 @@
+/*
+ navbar bg - #1f3349 
+ highlighet text -#00c57f
+ footer color - #6a6b6b
+ main text - #404040
+ secondary text - #5d5d5d
+*/
+.footerContainer{
+  background-color: #f4f4f4;
+  padding: 30px 0;
+  text-align: center;
+}
+a{
+  text-decoration: none;
+  color: #6a6b6b;
+  margin: 0 10px
+}
