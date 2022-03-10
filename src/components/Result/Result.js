@@ -7,9 +7,8 @@ import {FaPlaneDeparture} from 'react-icons/fa'
 import {FaBuilding} from 'react-icons/fa'
 import { MyContext } from '../../App'
 export default function Result() {
-  const { cities, flights, night} = useContext(MyContext)
-  
-
+  const { cities, flights, night, selectedCity} = useContext(MyContext)
+  console.log(selectedCity,'selected city')
 
   return (
     <Container className='resultContainer'>
@@ -39,7 +38,7 @@ export default function Result() {
                     <FaPlaneDeparture className='icon'/>
                   </div>
                   <div>
-                    <h2>flightCost</h2>
+                    <h2>{item.flightCost[selectedCity] || 1000} </h2>
                     <p>Return</p>
                   </div>
                 </div>
@@ -51,15 +50,15 @@ export default function Result() {
                     <FaBuilding className='icon'/>
                   </div>
                  <div>
-                    <h2>${item.hotelPrice * night}</h2>
-                    <p>{night}n x ${item.hotelPrice}</p>
+                    <h2>${item.hotelCost * night}</h2>
+                    <p>{night}n x ${item.hotelCost}</p>
                  </div>
                 </div>
                 <div className='hidden'>
                   <h2>=</h2>
                 </div>
                 <div className='highlight total'>
-                  <h2>$2000</h2>
+                  <h2>{(item.flightCost[selectedCity] || 1000)+(item.hotelCost * night)}</h2>
                   <p>Total Price</p>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import {Row, Col, Dropdown} from 'react-bootstrap'
 import { MyContext } from '../../App'
 export default function Filter() {
   
-  const {price, setPrice, night, setNight, category, setCategory, selectedLocation, setSelectedLocation, isChecked, setIsChecked, availableLocation, departures} = useContext(MyContext)
+  const {price, setPrice, night, setNight, category, setCategory, selectedCity, setSelectedCity, isChecked, setIsChecked, availableLocation, departures} = useContext(MyContext)
 
   function sliderHandler(e){
     if(e.target.name === 'price'){
@@ -29,7 +29,7 @@ export default function Filter() {
   },[isChecked])
 
   function locationHandler(e){
-    setSelectedLocation(e)
+    setSelectedCity(e)
     setIsChecked(false)
   }
 
@@ -41,14 +41,14 @@ export default function Filter() {
           I am based in {' '}
           <span className='highlight underline'>
             <input id='checkbox' type='checkbox'></input>
-            <div className='selectedLocation' onClick={()=>setIsChecked(c=>!c)}> {selectedLocation}</div>
+            <div className='selectedLocation' onClick={()=>setIsChecked(c=>!c)}> {selectedCity}, Australia</div>
             <div className='items'>
               <div>
                {
-                 departures.filter(item=>`${item.cityName}, ${item.countryName}` !== selectedLocation)
+                 departures.filter(item=>`${item.cityName}, ${item.countryName}` !== selectedCity)
                  .map((item, i)=>{
                    return(
-                     <div key={i} className='item' onClick={()=>locationHandler(`${item.cityName}, ${item.countryName}`)}>{item.cityName}, {item.countryName}</div>
+                     <div key={i} className='item' onClick={()=>locationHandler(item.cityName)}>{item.cityName}, {item.countryName}</div>
                    )
                  })
                }
