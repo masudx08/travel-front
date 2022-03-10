@@ -1,13 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import './filter.css'
 import {Row, Col, Dropdown} from 'react-bootstrap'
+import { MyContext } from '../../App'
 export default function Filter() {
-  const [price, setPrice] = useState(2000)
-  const [night, setNight] = useState(14)
-  const [category, setCategory] = useState('domestic')
-  const [selectedLocation, setSelectedLocation] = useState('Sydney, Australia')
-  const [isChecked, setIsChecked] = useState(false)
-  const availableLocation = ['Sydney, Australia', 'Dhaka, Bangladesh', 'Mumbai, India', 'Kabul, Afganisthan', 'London, England']
+  
+  const {price, setPrice, night, setNight, category, setCategory, selectedLocation, setSelectedLocation, isChecked, setIsChecked, availableLocation} = useContext(MyContext)
 
   function sliderHandler(e){
     if(e.target.name === 'price'){
@@ -36,11 +33,6 @@ export default function Filter() {
     setIsChecked(false)
   }
 
-console.log(category, 'category')
-console.log(selectedLocation, 'selectedLocation')
-console.log(price, 'price')
-console.log(night, 'night')
-console.log(isChecked, 'isChecked')
 
   return (
     <Row className='filterContainer'>

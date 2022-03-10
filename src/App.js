@@ -1,32 +1,48 @@
+import React, {useEffect, useState} from 'react'
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
-import Header from './components/Header/Header';
-import Filter from './components/Filter/Filter';
-import Result from './components/Result/Result';
-import Footer from './components/Footer/Footer';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import { fetchDeparture } from './utils/apiCall';
 
-function MainApp(){
-  return (
-    <div>
-      <Header />
-      <Filter />
-      <Result />
-      <Footer />
-    </div>
-  )
-}
+export const MyContext = React.createContext();
+
 
 function App() {
+  // Filter State
+  const [price, setPrice] = useState(2000)
+  const [night, setNight] = useState(14)
+  const [category, setCategory] = useState('domestic')
+  const [selectedLocation, setSelectedLocation] = useState('Sydney, Australia')
+  const [isChecked, setIsChecked] = useState(false)
+  const availableLocation = ['Sydney, Australia', 'Dhaka, Bangladesh', 'Mumbai, India', 'Kabul, Afganisthan', 'London, England']
+  const [departures, setDepartures] = useState([])
+
+  // Other state
+  const defaultValue = {
+    price, setPrice,
+    night, setNight,
+    category, setCategory,
+    selectedLocation, setSelectedLocation,
+    isChecked, setIsChecked,
+    availableLocation,
+    departures
+  }
+
+  useEffect(()=>{
+    fetchDeparture().then(res=>setDepartures(res))
+    
+  },[])
+
   return (
-    <BrowserRouter>
-      <Routes>
-      <Route path='/' element={<MainApp />}></Route> 
-      
-    </Routes>
-    </BrowserRouter>
+    <MyContext.Provider value={defaultValue}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />}></Route> 
+        </Routes>
+      </BrowserRouter>
+    </MyContext.Provider>
   );
 }
 
