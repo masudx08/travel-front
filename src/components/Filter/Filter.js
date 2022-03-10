@@ -4,7 +4,7 @@ import {Row, Col, Dropdown} from 'react-bootstrap'
 import { MyContext } from '../../App'
 export default function Filter() {
   
-  const {price, setPrice, night, setNight, category, setCategory, selectedLocation, setSelectedLocation, isChecked, setIsChecked, availableLocation} = useContext(MyContext)
+  const {price, setPrice, night, setNight, category, setCategory, selectedLocation, setSelectedLocation, isChecked, setIsChecked, availableLocation, departures} = useContext(MyContext)
 
   function sliderHandler(e){
     if(e.target.name === 'price'){
@@ -29,7 +29,7 @@ export default function Filter() {
   },[isChecked])
 
   function locationHandler(e){
-    setSelectedLocation(e.target.innerText)
+    setSelectedLocation(e)
     setIsChecked(false)
   }
 
@@ -45,10 +45,10 @@ export default function Filter() {
             <div className='items'>
               <div>
                {
-                 availableLocation.filter(item=>item !== selectedLocation)
-                 .map((location, i)=>{
+                 departures.filter(item=>`${item.cityName}, ${item.countryName}` !== selectedLocation)
+                 .map((item, i)=>{
                    return(
-                     <div key={i} className='item' onClick={(e)=>locationHandler(e)}>{location}</div>
+                     <div key={i} className='item' onClick={()=>locationHandler(`${item.cityName}, ${item.countryName}`)}>{item.cityName}, {item.countryName}</div>
                    )
                  })
                }
