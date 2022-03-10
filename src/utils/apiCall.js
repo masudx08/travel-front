@@ -8,8 +8,8 @@ function fetchCities(){
 function fetchFlights(){
     return fetch(backendUrl+'flights').then(res=>res.json())
 }
-function fetchHotels(){
-    return fetch(backendUrl+'hotels').then(res=>res.json())
-}
+// function fetchHotels(){
+//     return fetch(backendUrl+'hotels').then(res=>res.json())
+// }
 
-export {fetchDeparture, fetchCities, fetchFlights, fetchHotels}
+export {fetchDeparture, fetchCities, fetchFlights}

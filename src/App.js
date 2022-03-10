@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import { fetchDeparture, fetchCities, fetchFlights, fetchHotels } from './utils/apiCall';
+import { fetchDeparture, fetchCities, fetchFlights } from './utils/apiCall';
 
 export const MyContext = React.createContext();
 
@@ -41,7 +41,7 @@ function App() {
     fetchDeparture().then(res=>setDepartures(res))
     fetchCities().then(res=>setCities(res))
     fetchFlights().then(res=>setFlights(res))
-    fetchHotels().then(res=>setHotels(res))
+    // fetchHotels().then(res=>setHotels(res))
     
   },[])
 
