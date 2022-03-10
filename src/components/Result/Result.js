@@ -7,64 +7,9 @@ import {FaPlaneDeparture} from 'react-icons/fa'
 import {FaBuilding} from 'react-icons/fa'
 import { MyContext } from '../../App'
 export default function Result() {
-  const {departures} = useContext(MyContext)
-  console.log(departures, ' result of departures')
-  const results = [
-    {
-      id:1,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-    {
-      id:2,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-    {
-      id:3,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-    {
-      id:4,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-    {
-      id:5,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-    {
-      id:6,
-      img : BeachImg,
-      locationA: 'Nadi',
-      locationB: 'Fiji',
-      flyCost: 1107,
-      roomCost: 834,
-      roomSpec: '7n x $112'
-    },
-  ]
+  const { cities, flights, hotels} = useContext(MyContext)
+  console.log(flights, 'flights')
+  console.log(hotels, 'hotels')
 
   return (
     <Container className='resultContainer'>
@@ -75,7 +20,7 @@ export default function Result() {
      </Row>
      <div>
       {
-        results.map((item, index)=>{
+        cities.map((item, index)=>{
           return (
             <Row key={index} className='locationResult' >
             <Col xs={10} md={4} className='imagePart'>
@@ -84,8 +29,8 @@ export default function Result() {
             <Col xs={10} md={8} >
               <div>
                 <h1 className='location'>
-                <span className='locationA'>{item.locationA}, </span> 
-                <span className='locationB'>{item.locationB}</span>
+                <span className='locationA'>{item.cityName}, </span> 
+                <span className='locationB'>{item.country}</span>
                 </h1>
               </div>
               <div className='contentPart'>
@@ -94,7 +39,7 @@ export default function Result() {
                     <FaPlaneDeparture className='icon'/>
                   </div>
                   <div>
-                    <h2>${item.flyCost}</h2>
+                    <h2>flightCost</h2>
                     <p>Return</p>
                   </div>
                 </div>
@@ -106,15 +51,15 @@ export default function Result() {
                     <FaBuilding className='icon'/>
                   </div>
                  <div>
-                    <h2>${item.roomCost}</h2>
-                    <p>{item.roomSpec}</p>
+                    <h2>roomCost</h2>
+                    <p>7n x $112</p>
                  </div>
                 </div>
                 <div className='hidden'>
                   <h2>=</h2>
                 </div>
                 <div className='highlight total'>
-                  <h2>${item.flyCost + item.roomCost}</h2>
+                  <h2>$2000</h2>
                   <p>Total Price</p>
                 </div>
               </div>

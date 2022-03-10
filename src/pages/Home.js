@@ -8,9 +8,6 @@ import Result from "../components/Result/Result"
 
 
 function Home(){
-  const Context = useContext(MyContext)
-  console.log(Context, 'context')
-  
   return (
     <div>
       <Header />

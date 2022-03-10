@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import { fetchDeparture } from './utils/apiCall';
+import { fetchDeparture, fetchCities, fetchFlights, fetchHotels } from './utils/apiCall';
 
 export const MyContext = React.createContext();
 
@@ -17,9 +17,13 @@ function App() {
   const [selectedLocation, setSelectedLocation] = useState('Sydney, Australia')
   const [isChecked, setIsChecked] = useState(false)
   const availableLocation = ['Sydney, Australia', 'Dhaka, Bangladesh', 'Mumbai, India', 'Kabul, Afganisthan', 'London, England']
-  const [departures, setDepartures] = useState([])
 
-  // Other state
+  // Collected data from backend
+  const [departures, setDepartures] = useState([])
+  const [cities, setCities] = useState([])
+  const [flights, setFlights] = useState([])
+  const [hotels, setHotels] = useState([])
+
   const defaultValue = {
     price, setPrice,
     night, setNight,
@@ -27,11 +31,17 @@ function App() {
     selectedLocation, setSelectedLocation,
     isChecked, setIsChecked,
     availableLocation,
-    departures
+    departures,
+    cities,
+    flights,
+    hotels
   }
 
   useEffect(()=>{
     fetchDeparture().then(res=>setDepartures(res))
+    fetchCities().then(res=>setCities(res))
+    fetchFlights().then(res=>setFlights(res))
+    fetchHotels().then(res=>setHotels(res))
     
   },[])
 
