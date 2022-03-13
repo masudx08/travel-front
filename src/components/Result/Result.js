@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './result.css'
 import BeachImg from '../../images/beach.jpg'
@@ -8,19 +8,23 @@ import { FaBuilding } from 'react-icons/fa'
 import { MyContext } from '../../App'
 import Collapser from '../custom/Collapser'
 export default function Result() {
-  const { cities, flights, night, selectedCity, price, category, selectedCountry } = useContext(MyContext)
+  const { cities, flights, night, selectedCity, price, category, selectedCountry, selectedPage, setSelectedPage } = useContext(MyContext)
 
   return (
     <Container className='resultContainer'>
       <Row className='resultTextContainer'>
         <Col xs={10} >
-          <b >There are 29 different destinations in 12 countries you can travel for your budget, based on average prices</b>
+          <b >There are {cities.length} different destinations. You can travel for your budget, based on average prices</b>
         </Col>
       </Row>
 
       <div>
         {
-          cities.map((item, index) => {
+          cities.filter((item, index)=>{
+            return index < selectedPage * 5 && index >= (selectedPage - 1)*5 
+          })
+          .map((item, index, arr) => {
+
             if((item.flightCost[selectedCity] || 1000) + (item.hotelCost * night) < price && category=='domestic' ? item.country == selectedCountry : category=='international' ? item.country != selectedCountry : category == 'either' && true){
               
                
@@ -87,13 +91,23 @@ export default function Result() {
         <div id='pagination' className='d-flex justify-content-center'>
           <Pagination>
             <Pagination.Prev />
-            <Pagination.Item active>{1}</Pagination.Item>
+            {/* <Pagination.Item active>{1}</Pagination.Item>
             <Pagination.Item>{2}</Pagination.Item>
             <Pagination.Item>{3}</Pagination.Item>
             <Pagination.Item >{4}</Pagination.Item>
             <Pagination.Item>{5}</Pagination.Item>
             <Pagination.Ellipsis />
-            <Pagination.Item>{10}</Pagination.Item>
+            <Pagination.Item>{10}</Pagination.Item> */}
+            {
+              cities.filter((item, index)=>{
+                return index % 5 == 0
+              })
+              .map((item, index)=>{
+                return (
+                  <Pagination.Item active={selectedPage == index+1} onClick={()=>setSelectedPage(index+1)}>{index+1}</Pagination.Item>
+                )
+              })
+            }
             <Pagination.Next />
           </Pagination>
         </div>
