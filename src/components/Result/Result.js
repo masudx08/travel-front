@@ -8,8 +8,7 @@ import { FaBuilding } from 'react-icons/fa'
 import { MyContext } from '../../App'
 import Collapser from '../custom/Collapser'
 export default function Result() {
-  const { cities, flights, night, selectedCity } = useContext(MyContext)
-  console.log(selectedCity, 'selected city')
+  const { cities, flights, night, selectedCity, price, category, selectedCountry } = useContext(MyContext)
 
   return (
     <Container className='resultContainer'>
@@ -22,62 +21,67 @@ export default function Result() {
       <div>
         {
           cities.map((item, index) => {
-            return (
+            if((item.flightCost[selectedCity] || 1000) + (item.hotelCost * night) < price && category=='domestic' ? item.country == selectedCountry : category=='international' ? item.country != selectedCountry : category == 'either' && true){
+              
+               
+              return (
 
-              <Row key={index} className='locationResult' >
-                <Col xs={10} lg={4} className='imagePart'>
-                  <img src={item.img} alt="" />
-                </Col>
-                <Col xs={10} lg={8} >
-                  <Collapser
-                    introduction={item.introduction}
-                    flightLink={item.flightLink}
-                    hotelLink={item.hotelLink}
-                    packageLink={item.packageLink}
-                  >
-                    <div>
-                      <h1 className='location'>
-                        <span className='locationA'>{item.cityName}, </span>
-                        <span className='locationB'>{item.country}</span>
-                      </h1>
-                    </div>
-                    <div className='contentPart'>
-                      <div className='content-min'>
-                        <div>
-                          <FaPlaneDeparture className='icon' />
+                <Row key={index} className='locationResult' >
+                  <Col xs={10} lg={4} className='imagePart'>
+                    <img src={item.img} alt="" />
+                  </Col>
+                  <Col xs={10} lg={8} >
+                    <Collapser
+                      introduction={item.introduction}
+                      flightLink={item.flightLink}
+                      hotelLink={item.hotelLink}
+                      packageLink={item.packageLink}
+                    >
+                      <div>
+                        <h1 className='location'>
+                          <span className='locationA'>{item.cityName}, </span>
+                          <span className='locationB'>{item.country}</span>
+                        </h1>
+                      </div>
+                      <div className='contentPart'>
+                        <div className='content-min'>
+                          <div>
+                            <FaPlaneDeparture className='icon' />
+                          </div>
+                          <div>
+                            <h2>{item.flightCost[selectedCity] || 1000} </h2>
+                            <p>Return</p>
+                          </div>
                         </div>
-                        <div>
-                          <h2>{item.flightCost[selectedCity] || 1000} </h2>
-                          <p>Return</p>
+                        <div className='hidden'>
+                          <h2>+</h2>
+                        </div>
+                        <div className='content-min'>
+                          <div>
+                            <FaBuilding className='icon' />
+                          </div>
+                          <div>
+                            <h2>${item.hotelCost * night}</h2>
+                            <p>{night}n x ${item.hotelCost}</p>
+                          </div>
+                        </div>
+                        <div className='hidden'>
+                          <h2>=</h2>
+                        </div>
+                        <div className='highlight total'>
+                          <h2>{(item.flightCost[selectedCity] || 1000) + (item.hotelCost * night)}</h2>
+                          <p>Total Price</p>
                         </div>
                       </div>
-                      <div className='hidden'>
-                        <h2>+</h2>
-                      </div>
-                      <div className='content-min'>
-                        <div>
-                          <FaBuilding className='icon' />
-                        </div>
-                        <div>
-                          <h2>${item.hotelCost * night}</h2>
-                          <p>{night}n x ${item.hotelCost}</p>
-                        </div>
-                      </div>
-                      <div className='hidden'>
-                        <h2>=</h2>
-                      </div>
-                      <div className='highlight total'>
-                        <h2>{(item.flightCost[selectedCity] || 1000) + (item.hotelCost * night)}</h2>
-                        <p>Total Price</p>
-                      </div>
-                    </div>
-
-                  </Collapser>
-                </Col>
-              </Row>
-
-
-            )
+  
+                    </Collapser>
+                  </Col>
+                </Row>
+  
+  
+              )
+            }
+            
           })
         }
         <div id='pagination' className='d-flex justify-content-center'>

@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import { Button, Collapse } from 'react-bootstrap';
 import './collapser.css'
 function Collapser({children, introduction, flightLink, hotelLink, packageLink}) {
-  console.log(flightLink, hotelLink, packageLink)
   const [open, setOpen] = useState(false);
 
   return (

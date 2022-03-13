@@ -15,6 +15,7 @@ function App() {
   const [night, setNight] = useState(14)
   const [category, setCategory] = useState('domestic')
   const [selectedCity, setSelectedCity] = useState('Sydney')
+  const [selectedCountry, setSelectedCountry] = useState('Australia')
   const [isChecked, setIsChecked] = useState(false)
   const availableLocation = ['Sydney, Australia', 'Dhaka, Bangladesh', 'Mumbai, India', 'Kabul, Afganisthan', 'London, England']
 
@@ -29,6 +30,7 @@ function App() {
     night, setNight,
     category, setCategory,
     selectedCity, setSelectedCity,
+    selectedCountry, setSelectedCountry,
     isChecked, setIsChecked,
     availableLocation,
     departures,
