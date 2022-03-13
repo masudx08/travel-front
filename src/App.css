@@ -28,3 +28,13 @@ p, b, a{
     font-size: 13px;
   }
 }
+@media  screen and (min-width:992px) {
+  .hideInDesktop{
+    display: none;
+  }
+}
+@media  screen and (max-width:991px) {
+  .hideInMobile{
+    display: none;
+  }
+}

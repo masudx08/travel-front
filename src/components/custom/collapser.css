@@ -1,0 +1,19 @@
+.btnLink{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.btnLink a{
+  font-size: 16px;
+  background-color: #00c57f;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 3px;
+}
+
+@media screen and (max-width: 991px){
+  .btnLink a{
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+  }
+}
