@@ -92,7 +92,7 @@ export default function Result() {
         }
         <div id='pagination' className='d-flex justify-content-center'>
           <Pagination>
-            <Pagination.Prev />
+            <Pagination.Prev onClick={()=>selectedPage > 1 && setSelectedPage(selectedPage-1)} />
             {/* <Pagination.Item active>{1}</Pagination.Item>
             <Pagination.Item>{2}</Pagination.Item>
             <Pagination.Item>{3}</Pagination.Item>
@@ -110,7 +110,7 @@ export default function Result() {
                 )
               })
             }
-            <Pagination.Next />
+            <Pagination.Next onClick={()=>  setSelectedPage(selectedPage+1)} />
           </Pagination>
         </div>
       </div>
