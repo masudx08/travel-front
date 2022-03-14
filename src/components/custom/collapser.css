@@ -8,6 +8,8 @@
   color: white;
   padding: 8px 15px;
   border-radius: 3px;
+  text-decoration: none;
+  
 }
 
 @media screen and (max-width: 991px){
@@ -15,6 +17,11 @@
     text-align: center;
     display: block;
     margin-bottom: 5px;
-    text-decoration: none;
+    
+  }
+}
+@media screen and (min-width: 992px){
+  .btnLink a{
+    margin-right: 10px;
   }
 }

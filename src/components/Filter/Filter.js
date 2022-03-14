@@ -4,7 +4,7 @@ import {Row, Col, Dropdown} from 'react-bootstrap'
 import { MyContext } from '../../App'
 export default function Filter() {
   
-  const {price, setPrice, night, setNight, category, setCategory, selectedCity, setSelectedCity, isChecked, setIsChecked, availableLocation, departures} = useContext(MyContext)
+  const {price, setPrice, night, setNight, category, setCategory,selectedCountry, setSelectedCountry, selectedCity, setSelectedCity, isChecked, setIsChecked, availableLocation, departures} = useContext(MyContext)
 
   function sliderHandler(e){
     if(e.target.name === 'price'){
@@ -28,8 +28,9 @@ export default function Filter() {
     mycheckbox.checked = isChecked
   },[isChecked])
 
-  function locationHandler(e){
-    setSelectedCity(e)
+  function locationHandler(city, country){
+    setSelectedCity(city)
+    setSelectedCountry(country)
     setIsChecked(false)
   }
 
@@ -41,14 +42,15 @@ export default function Filter() {
           I am based in {' '}
           <span className='highlight underline'>
             <input id='checkbox' type='checkbox'></input>
-            <div className='selectedLocation' onClick={()=>setIsChecked(c=>!c)}> {selectedCity}, Australia</div>
+            <div className='selectedLocation' onClick={()=>setIsChecked(c=>!c)}> {selectedCity}, {selectedCountry}</div>
             <div className='items'>
               <div>
                {
-                 departures.filter(item=>`${item.cityName}, ${item.countryName}` !== selectedCity)
+                //  departures.filter(item=>`${item.cityName}, ${item.countryName}` !== selectedCity)
+                 departures
                  .map((item, i)=>{
                    return(
-                     <div key={i} className='item' onClick={()=>locationHandler(item.cityName)}>{item.cityName}, {item.countryName}</div>
+                     <div key={i} className='item' onClick={()=>locationHandler(item.cityName, item.countryName)}>{item.cityName}, {item.countryName}</div>
                    )
                  })
                }
@@ -67,10 +69,10 @@ export default function Filter() {
             <div className='sliderSection'>
               <p className='slider-title'>Price</p >
               <div className='slider-slide'>
-                <input name='price' value={price} className='slider' min={1} max={2000}  type="range"  onChange={e=>sliderHandler(e)} />
+                <input name='price' value={price} className='slider' min={2000} max={5000}  type="range"  onChange={e=>sliderHandler(e)} />
                 <div className='sliderTitleContainer'>
-                  <p>$1</p>
-                  <p>$2000+</p>
+                  <p>$2000</p>
+                  <p>$5000+</p>
                 </div>
               </div>
             </div>

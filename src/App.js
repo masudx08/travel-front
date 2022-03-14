@@ -11,7 +11,7 @@ export const MyContext = React.createContext();
 
 function App() {
   // Filter State
-  const [price, setPrice] = useState(2000)
+  const [price, setPrice] = useState(5000)
   const [night, setNight] = useState(14)
   const [category, setCategory] = useState('domestic')
   const [selectedCity, setSelectedCity] = useState('Sydney')

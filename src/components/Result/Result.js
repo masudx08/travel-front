@@ -21,7 +21,7 @@ export default function Result() {
       <div>
         {
           cities.filter((item, index)=>{
-            return index < selectedPage * 5 && index >= (selectedPage - 1)*5 
+            return index <= selectedPage * 5 && index >= (selectedPage - 1)*5 
           })
           .map((item, index, arr) => {
 
@@ -48,6 +48,7 @@ export default function Result() {
                         </h1>
                       </div>
                       <div className='contentPart'>
+                        <div className='right'>
                         <div className='content-min'>
                           <div>
                             <FaPlaneDeparture className='icon' />
@@ -71,6 +72,7 @@ export default function Result() {
                         </div>
                         <div className='hidden'>
                           <h2>=</h2>
+                        </div>
                         </div>
                         <div className='highlight total'>
                           <h2>{(item.flightCost[selectedCity] || 1000) + (item.hotelCost * night)}</h2>
