@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import { fetchDeparture, fetchCities, fetchFlights } from './utils/apiCall';
+import { fetchDeparture, fetchCities } from './utils/apiCall';
 
 export const MyContext = React.createContext();
 
@@ -23,7 +23,7 @@ function App() {
   // Collected data from backend
   const [departures, setDepartures] = useState([])
   const [cities, setCities] = useState([])
-  const [flights, setFlights] = useState([])
+  // const [flights, setFlights] = useState([])
   const [hotels, setHotels] = useState([])
 
   const defaultValue = {
@@ -37,14 +37,14 @@ function App() {
     availableLocation,
     departures,
     cities,
-    flights,
+    // flights,
     hotels
   }
 
   useEffect(()=>{
     fetchDeparture().then(res=>setDepartures(res))
     fetchCities().then(res=>setCities(res))
-    fetchFlights().then(res=>setFlights(res))
+    // fetchFlights().then(res=>setFlights(res))
     // fetchHotels().then(res=>setHotels(res))
     
   },[])

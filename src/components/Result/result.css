@@ -22,7 +22,7 @@
   border-radius: 5px;
 }
 .locationResult{
-  align-items: center;
+  /* align-items: center; */
   margin-bottom: 59px;
   cursor: pointer;
   justify-content: center;

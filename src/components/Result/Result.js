@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './result.css'
 import BeachImg from '../../images/beach.jpg'
@@ -8,13 +8,33 @@ import { FaBuilding } from 'react-icons/fa'
 import { MyContext } from '../../App'
 import Collapser from '../custom/Collapser'
 export default function Result() {
+  const [done, setDone] = useState(false)
+  let uniqueCountries = []
+  let myTotalPrice = 0
   const { cities, flights, night, selectedCity, price, category, selectedCountry, selectedPage, setSelectedPage } = useContext(MyContext)
-
+ 
+ 
   return (
     <Container className='resultContainer'>
       <Row className='resultTextContainer'>
         <Col xs={10} >
-          <b >There are {cities.length} different destinations. You can travel for your budget, based on average prices</b>
+          {
+            cities.filter((item,index)=>{
+              myTotalPrice += item.flightCost[selectedCity] || 100
+              if(uniqueCountries.indexOf(item.country)<0){
+                uniqueCountries.push(item.country)
+              }
+              if(index+1 == cities.length){
+                return true
+              }
+              return false
+            })
+            .map(item=>{
+              return ''
+            })
+          }
+          <b >There are {cities.length} different {category==='domestic'?'destination':`destinations in ${uniqueCountries.length} countries`}. You can travel for your budget, based on average prices {(myTotalPrice/cities.length).toFixed(0)}$
+          </b>
         </Col>
       </Row>
 
@@ -54,7 +74,7 @@ export default function Result() {
                             <FaPlaneDeparture className='icon' />
                           </div>
                           <div>
-                            <h2>{item.flightCost[selectedCity] || 1000} </h2>
+                            <h2>${item.flightCost[selectedCity] || 100} </h2>
                             <p>Return</p>
                           </div>
                         </div>
@@ -75,7 +95,7 @@ export default function Result() {
                         </div>
                         </div>
                         <div className='highlight total'>
-                          <h2>{(item.flightCost[selectedCity] || 1000) + (item.hotelCost * night)}</h2>
+                          <h2>${(item.flightCost[selectedCity] || 1000) + (item.hotelCost * night)}</h2>
                           <p>Total Price</p>
                         </div>
                       </div>
@@ -106,7 +126,7 @@ export default function Result() {
               })
               .map((item, index)=>{
                 return (
-                  <Pagination.Item active={selectedPage == index+1} onClick={()=>setSelectedPage(index+1)}>{index+1}</Pagination.Item>
+                  <Pagination.Item key={index} active={selectedPage == index+1} onClick={()=>setSelectedPage(index+1)}>{index+1}</Pagination.Item>
                 )
               })
             }

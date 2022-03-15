@@ -5,11 +5,11 @@ function fetchDeparture(){
 function fetchCities(){
     return fetch(backendUrl+'cities').then(res=>res.json())
 }
-function fetchFlights(){
-    return fetch(backendUrl+'flights').then(res=>res.json())
-}
+// function fetchFlights(){
+//     return fetch(backendUrl+'flights').then(res=>res.json())
+// }
 // function fetchHotels(){
 //     return fetch(backendUrl+'hotels').then(res=>res.json())
 // }
 
-export {fetchDeparture, fetchCities, fetchFlights}
+export {fetchDeparture, fetchCities}

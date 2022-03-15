@@ -87,7 +87,7 @@ export default function Filter() {
                   <p>14 nights</p>
                 </div>
               </div>
-              <p className='slider-title'>Night</p >
+              <p className='slider-title'>Nights</p >
             </div>
             
           </Col>
